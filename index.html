@@ -568,21 +568,57 @@
 
             if (prefersReduced || !('IntersectionObserver' in window)) {
                 revealElements.forEach(el => el.classList.add('in-view'));
-                return;
+            } else {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const delay = entry.target.dataset.delay || '0s';
+                            entry.target.style.transitionDelay = delay;
+                            entry.target.classList.add('in-view');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                revealElements.forEach(el => observer.observe(el));
             }
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const delay = entry.target.dataset.delay || '0s';
-                        entry.target.style.transitionDelay = delay;
-                        entry.target.classList.add('in-view');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
+            // --- LANGUAGE SWITCHER LOGIC ---
+            const languageSwitcher = document.getElementById('language-switcher');
+            if (languageSwitcher) {
+                
+                // Determine the current language from the filename
+                const path = window.location.pathname;
+                const page = path.split("/").pop(); // e.g., "index_en.html" or "" for root
 
-            revealElements.forEach(el => observer.observe(el));
+                let currentLang = 'fr'; // Default to French
+                if (page.includes('index_en.html')) {
+                    currentLang = 'en';
+                } else if (page.includes('index_ja.html')) {
+                    currentLang = 'ja';
+                } else if (page.includes('index_de.html')) {
+                    currentLang = 'de';
+                }
+                
+                // Set the dropdown to the current language
+                languageSwitcher.value = currentLang;
+
+                // Add event listener to handle changes
+                languageSwitcher.addEventListener('change', function() {
+                    const selectedLang = this.value;
+                    let newUrl = '';
+
+                    if (selectedLang === 'fr') {
+                        // The French version is the main index.html file
+                        newUrl = 'index.html';
+                    } else {
+                        // Other languages follow the pattern index_xx.html
+                        newUrl = `index_${selectedLang}.html`;
+                    }
+
+                    // Redirect to the new page
+                    window.location.href = newUrl;
+                });
+            }
         })();
     </script>
 </body>
