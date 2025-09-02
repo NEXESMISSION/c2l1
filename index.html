@@ -201,9 +201,59 @@
         .hero-overlay-blend {
             background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), var(--section-bg));
         }
+        /* --- LANGUAGE SELECTOR STYLES --- */
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 50;
+        }
+        .language-selector select {
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #ebdfa2;
+            border-radius: 9999px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            outline: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 30px;
+        }
+        .language-selector select option {
+            background-color: #0b0b0b;
+        }
+        .flag-icon {
+            display: inline-block;
+            margin-right: 8px;
+            width: 24px;
+            height: 16px;
+            background-size: cover;
+            vertical-align: middle;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 3px;
+        }
     </style>
 </head>
 <body class="bg-black">
+
+    <!-- =============================== -->
+    <!-- LANGUAGE SELECTOR -->
+    <!-- =============================== -->
+    <div class="language-selector">
+        <select id="language-switcher">
+            <option value="fr" selected>🇫🇷 Français</option>
+            <option value="en">🇺🇸 English</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="de">🇩🇪 Deutsch</option>
+        </select>
+    </div>
 
     <!-- =============================== -->
     <!-- HERO SECTION -->
