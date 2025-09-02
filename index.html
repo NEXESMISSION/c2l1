@@ -88,6 +88,10 @@
             .section-media {
                 order: -1;
             }
+            /* NEW: This rule ensures the map stays below the text on mobile */
+            #contact .section-media {
+                order: initial;
+            }
         }
         /* Reusable components for all sections */
         .section-eyebrow {
@@ -193,7 +197,6 @@
                 transform: none !important;
             }
         }
-
         /* NEW: Seamless hero to main section transition */
         .hero-overlay-blend {
             background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), var(--section-bg));
@@ -210,7 +213,6 @@
             <source media="(max-width: 768px)" srcset="https://i.ibb.co/d0sy6KSk/Gemini-Generated-Image-1hgtts1hgtts1hgt.png">
             <img src="https://i.ibb.co/5W31spBz/40892f56-3be9-4361-b4aa-777db52ba4d8.png" alt="Olive Oil Background" class="w-full h-full object-cover" loading="lazy">
         </picture>
-        <!-- Updated: This overlay now fades to the main section's background color -->
         <div class="absolute inset-0 hero-overlay-blend"></div>
         <div class="relative z-10 text-center text-white px-4">
             <div class="fade-in-up" style="animation-delay:0.2s">
@@ -240,7 +242,7 @@
         <section id="a-propos" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="a-propos-title">
             <div class="section-gradient-layer gradient-right"></div>
             <div class="max-w-7xl mx-auto section-grid">
-                <div class="p-0"> <!-- No padding needed here as it's handled by text elements -->
+                <div>
                     <span class="section-eyebrow reveal" aria-hidden="true">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21c4.97 0 9-4.03 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 12c0-4.97 4.03-9 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 12c0-2.761 2.239-5 5-5M12 17c2.761 0 5-2.239 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
                         À propos de nous
@@ -248,7 +250,6 @@
                     <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="a-propos-title">
                         WM TRADE SOLUTION — Huile d’olive ZETNA extra vierge
                     </h2>
-                    <!-- Adjusted paragraph font size for mobile -->
                     <p class="text-sm md:text-lg text-[var(--section-muted)] mb-5 reveal">
                         WM TRADE SOLUTION est une entreprise tunisienne spécialisée dans la production et l’exportation d’huile d’olive ZETNA extra vierge de haute qualité. Ancrée dans une tradition oléicole millénaire, notre mission est de faire découvrir au monde les saveurs uniques de l’huile d’olive tunisienne.
                     </p>
@@ -296,7 +297,6 @@
                     <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="produits-title">
                         Nos produits – L’huile ZETNA
                     </h2>
-                    <!-- Adjusted paragraph font size for mobile -->
                     <p class="text-sm md:text-lg text-[var(--section-muted)] mb-5 reveal">
                         ZETNA est plus qu'une huile d'olive : c’est un concentré de nature, de tradition et de savoir-faire. Notre huile est issue de variétés autochtones cultivées dans des conditions climatiques idéales.
                     </p>
@@ -333,7 +333,6 @@
         <section id="reconnaissance" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="reconnaissance-title">
             <div class="section-gradient-layer gradient-right"></div>
             <div class="max-w-7xl mx-auto section-grid">
-                <!-- Left Column: Detailed Awards -->
                 <div>
                     <span class="section-eyebrow reveal">
                         Reconnaissance Internationale
@@ -341,12 +340,10 @@
                     <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="reconnaissance-title">
                         Distinctions et Prix Récents
                     </h2>
-                    <!-- Adjusted paragraph font size for mobile -->
                     <p class="text-sm md:text-lg text-[var(--section-muted)] mb-8 reveal">
                         L'excellence de notre huile d'olive ZETNA est reconnue par les jurys les plus prestigieux à travers le monde. Chaque médaille est un témoignage de notre engagement envers la qualité.
                     </p>
                     <div class="space-y-6">
-                        <!-- Award 2024 -->
                         <div class="flex gap-4 items-start reveal">
                             <div class="text-3xl pt-1">🏅</div>
                             <div>
@@ -354,7 +351,6 @@
                                 <p class="text-[var(--section-muted)] text-xs md:text-sm">Récompense pour l'excellence gustative et la qualité exceptionnelle.</p>
                             </div>
                         </div>
-                        <!-- Award 2023 -->
                         <div class="flex gap-4 items-start reveal">
                             <div class="text-3xl pt-1">🥇</div>
                             <div>
@@ -362,7 +358,6 @@
                                 <p class="text-[var(--section-muted)] text-xs md:text-sm">Reconnaissance de nos méthodes traditionnelles de production.</p>
                             </div>
                         </div>
-                        <!-- Award 2022 -->
                         <div class="flex gap-4 items-start reveal">
                             <div class="text-3xl pt-1">🥈</div>
                             <div>
@@ -372,7 +367,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Right Column: Key Highlights -->
                 <div class="space-y-6 flex flex-col justify-center">
                     <div class="product-card-new reveal text-left p-6" data-delay="0.1s">
                         <div class="text-3xl mb-3">🏆</div>
@@ -399,7 +393,6 @@
         <section id="export" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="export-title">
             <div class="section-gradient-layer gradient-left"></div>
             <div class="max-w-7xl mx-auto section-grid">
-                <!-- Left Column: Export Details -->
                 <div>
                     <span class="section-eyebrow reveal">
                         Exportation Internationale
@@ -407,7 +400,6 @@
                     <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="export-title">
                         Une expertise dédiée à l’export
                     </h2>
-                    <!-- Adjusted paragraph font size for mobile -->
                     <p class="text-sm md:text-lg text-[var(--section-muted)] mb-5 reveal">
                         ZETNA exporte l’huile d’olive tunisienne vers plus de 20 pays à travers le monde. Nous adaptons nos emballages, certifications et processus logistiques aux exigences de chaque marché.
                     </p>
@@ -423,6 +415,66 @@
                         <div class="flex gap-3 items-start reveal">
                             <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                             <div><strong class="text-[var(--section-text)] text-sm md:text-base">Livraison</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">Mondiale.</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-media">
+                     <div class="flex flex-col justify-center p-6 rounded-2xl bg-[rgba(255,255,255,0.02)] border border-white/10">
+                        <h3 class="font-heading text-lg md:text-2xl leading-tight mb-6 text-center reveal">Nos Certifications</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-white/10 reveal" data-delay="0.1s">
+                                <span class="text-xl">✅</span> <span class="text-xs md:text-sm font-semibold text-white/90">Bio</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-white/10 reveal" data-delay="0.2s">
+                                <span class="text-xl">✅</span> <span class="text-xs md:text-sm font-semibold text-white/90">ISO 22000</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-white/10 reveal" data-delay="0.3s">
+                                <span class="text-xl">✅</span> <span class="text-xs md:text-sm font-semibold text-white/90">Health Certificate</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-white/10 reveal" data-delay="0.4s">
+                                <span class="text-xl">✅</span> <span class="text-xs md:text-sm font-semibold text-white/90">Certificate of Origin</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-white/10 reveal sm:col-span-2 sm:justify-center" data-delay="0.5s">
+                                <span class="text-xl">✅</span> <span class="text-xs md:text-sm font-semibold text-white/90">EU Organic Certificate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================== -->
+        <!-- CONTACT SECTION (RESTORED) -->
+        <!-- =============================== -->
+        <section id="contact" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="contact-title">
+            <div class="section-gradient-layer gradient-right"></div>
+            <div class="max-w-7xl mx-auto section-grid">
+                <div>
+                    <span class="section-eyebrow reveal" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21c4.97 0 9-4.03 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 12c0-4.97 4.03-9 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 12c0-2.761 2.239-5 5-5M12 17c2.761 0 5-2.239 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        Nous Joindre
+                    </span>
+                    <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="contact-title">
+                        Contactez-nous
+                    </h2>
+                    <p class="text-sm md:text-lg text-[var(--section-muted)] mb-5 reveal">
+                        N'hésitez pas à nous contacter pour toute question ou demande de devis. Nous sommes à votre disposition pour vous accompagner.
+                    </p>
+                    <div class="space-y-5 my-6">
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="section-check"><svg class="w-4 h-4 text-[#0b1607]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.5v7A2.5 2.5 0 0 0 5.5 18h13A2.5 2.5 0 0 0 21 15.5v-7A2.5 2.5 0 0 0 18.5 6h-13A2.5 2.5 0 0 0 3 8.5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 8l-9 6-9-6"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">Email</strong><br><a href="mailto:contact@wm-tradion.com" class="text-[var(--section-muted)] hover:text-[var(--section-brand)] transition-colors text-xs md:text-sm">contact@wm-tradion.com</a></div>
+                        </div>
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="section-check"><svg class="w-4 h-4 text-[#0b1607]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.5c0 8.308 6.692 15 15 15"/><path stroke-linecap="round" stroke-linejoin="round" d="M22 12.5c0 .645-.04 1.28-.12 1.9L20 14.5c-1.1-.1-2.2-.4-3.2-.9l-1 1c-1.6-1-2.9-2.3-3.9-3.9l1-1c-.5-1-.8-2.1-.9-3.2L9.6 2.1C10.31 2 11 2 11 2"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">Téléphone</strong><br><a href="tel:+21624628534" class="text-[var(--section-muted)] hover:text-[var(--section-brand)] transition-colors text-xs md:text-sm">+216 24 628 534</a></div>
+                        </div>
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="section-check"><svg class="w-4 h-4 text-[#0b1607]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5c0 7-9 11.5-9 11.5S3 18.5 3 11.5a9 9 0 1 1 18 0z"/></svg></div>
+                            <div>
+                                <strong class="text-[var(--section-text)] text-sm md:text-base">Adresse</strong>
+                                <address class="not-italic text-[var(--section-muted)] text-xs md:text-sm leading-snug">Bloc A — 3ème Étage, Bureau A1<br>Immeuble Henda 10, Rue l'Île de Rhodes<br>1053 Les Berges du Lac 2</address>
+                            </div>
                         </div>
                     </div>
                 </div>
