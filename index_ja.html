@@ -1,1 +1,626 @@
 
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WM TRADE SOLUTION - ZeTna オリーブオイル</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Consolidated Styles -->
+    <style>
+        /* --- GENERAL STYLES --- */
+        body {
+            background-color: #0b0b0b;
+            color: #e6eef8;
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        /* --- HERO SECTION STYLES --- */
+        .gold-border-btn {
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, #a2682a, #ffffc2) 1;
+            border-radius: 9999px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gold-border-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 194, 0.3);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        /* --- UNIFIED SECTION STYLES --- */
+        :root {
+            --section-bg: #121212;
+            --section-card: #1f1f1f;
+            --section-text: #ffffff;
+            --section-muted: #a0a0a0;
+            --section-brand: #8bc34a; /* olive green */
+            --section-brand-2: #c3d99a;
+            --section-ring: rgba(139, 195, 74, 0.35);
+            --section-shadow: 0 10px 30px rgba(0,0,0,.35);
+            --section-radius: 18px;
+        }
+        /* Continuous background for the main content area */
+        .main-bg {
+            background: radial-gradient(1200px 600px at 50% -10%, rgba(139,195,74,.05), transparent 60%),
+                        radial-gradient(1000px 800px at 10% 80%, rgba(195,217,154,.08), transparent 80%),
+                        var(--section-bg);
+        }
+        /* Individual gradient layers for each section for visual texture */
+        .section-gradient-layer {
+            position: absolute;
+            inset: 0;
+            opacity: 0.25;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .gradient-right {
+            background: radial-gradient(900px 600px at 90% 10%, rgba(195,217,154,.18), transparent 60%);
+        }
+        .gradient-left {
+            background: radial-gradient(1200px 600px at 10% -10%, rgba(139,195,74,.15), transparent 60%);
+        }
+        /* Grid layout for two-column sections */
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: clamp(24px, 5vw, 60px);
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-media {
+                order: -1;
+            }
+            /* NEW: This rule ensures the map stays below the text on mobile */
+            #contact .section-media {
+                order: initial;
+            }
+        }
+        /* Reusable components for all sections */
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: var(--section-muted);
+            background: linear-gradient(90deg, rgba(139,195,74,.18), transparent);
+            border: 1px solid rgba(139,195,74,.25);
+            border-radius: 999px;
+            padding: 6px 12px;
+        }
+        .section-check {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: linear-gradient(180deg, var(--section-brand), var(--section-brand-2));
+            display: grid;
+            place-items: center;
+            flex: none;
+            box-shadow: 0 6px 18px var(--section-ring);
+        }
+        .section-btn {
+            appearance: none;
+            border: 0;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 12px 18px;
+            line-height: 1;
+            transition: transform .15s ease, box-shadow .15s ease, background .2s ease, color .2s ease;
+            box-shadow: var(--section-shadow);
+            will-change: transform;
+        }
+        .section-btn-primary {
+            background: linear-gradient(180deg, color-mix(in oklab, var(--section-brand), white 10%), var(--section-brand));
+            color: #0b1607;
+        }
+        .section-btn-ghost {
+            background: color-mix(in oklab, var(--section-text), transparent 92%);
+            color: var(--section-text);
+            border: 1px solid color-mix(in oklab, var(--section-text), transparent 80%);
+        }
+        .section-btn:hover {
+            transform: translateY(-1px);
+        }
+        .section-media {
+            position: relative;
+            min-height: 320px;
+        } /* Removed border and bg */
+        /* Styles for the product cards */
+        .product-card-new {
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+            border: 1px solid color-mix(in oklab, var(--section-text), transparent 88%);
+            border-radius: var(--section-radius);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card-new:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,.4);
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+        }
+        .product-card-new img {
+            height: 240px;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.5rem;
+            object-fit: contain;
+        }
+        .product-card-new h3 {
+            color: var(--section-text);
+        }
+        .product-card-new p {
+            color: var(--section-muted);
+            flex-grow: 1;
+        }
+        /* --- UNIVERSAL REVEAL ANIMATION --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .section-btn, .section-btn:hover {
+                transform: none !important;
+            }
+        }
+        /* NEW: Seamless hero to main section transition */
+        .hero-overlay-blend {
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), var(--section-bg));
+        }
+        /* --- LANGUAGE SELECTOR STYLES --- */
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 50;
+        }
+        .language-selector select {
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid #ebdfa2;
+            border-radius: 9999px;
+            padding: 6px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            outline: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 30px;
+        }
+        .language-selector select option {
+            background-color: #0b0b0b;
+        }
+        .flag-icon {
+            display: inline-block;
+            margin-right: 8px;
+            width: 24px;
+            height: 16px;
+            background-size: cover;
+            vertical-align: middle;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+    <!-- =============================== -->
+    <!-- LANGUAGE SELECTOR -->
+    <!-- =============================== -->
+    <div class="language-selector">
+        <select id="language-switcher">
+            <option value="fr">🇫🇷 フランス語</option>
+            <option value="en">🇺🇸 英語</option>
+            <option value="ja" selected>🇯🇵 日本語</option>
+            <option value="de">🇩🇪 ドイツ語</option>
+        </select>
+    </div>
+
+    <!-- =============================== -->
+    <!-- HERO SECTION -->
+    <!-- =============================== -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <picture class="absolute inset-0 -z-10">
+            <source media="(max-width: 768px)" srcset="https://i.ibb.co/d0sy6KSk/Gemini-Generated-Image-1hgtts1hgtts1hgt.png">
+            <img src="https://i.ibb.co/5W31spBz/40892f56-3be9-4361-b4aa-777db52ba4d8.png" alt="オリーブオイルの背景" class="w-full h-full object-cover" loading="lazy">
+        </picture>
+        <div class="absolute inset-0 hero-overlay-blend"></div>
+        <div class="relative z-10 text-center text-white px-4">
+            <div class="fade-in-up" style="animation-delay:0.2s">
+                <img src="https://i.ibb.co/5xTHCRtF/3b54656e-a9e3-4e45-9606-e29b598b5bdf-removebg-preview.png" alt="WM Trade Solution ロゴ" class="h-20 md:h-24 mx-auto mb-6" style="filter: brightness(1.7);">
+            </div>
+            <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4 fade-in-up" style="animation-delay:0.4s; color: #ebdfa2; text-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);">
+                ゼトナ：チュニジアの緑の黄金
+            </h1>
+            <p class="text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-8 fade-in-up" style="animation-delay:0.6s; color: #ebdfa2; text-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);">
+                私たちのオリーブ畑からあなたの食卓へ直接、比類のない品質でユニークな風味をお届けします。
+            </p>
+            <div class="fade-in-up" style="animation-delay:0.8s">
+                <a href="#about" class="gold-border-btn px-6 py-2 font-semibold text-sm" style="color: #ebdfa2; text-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);">コレクションを見る</a>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white animate-bounce z-10">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </header>
+
+    <main class="main-bg">
+        <!-- =============================== -->
+        <!-- ABOUT US SECTION -->
+        <!-- =============================== -->
+        <section id="about" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="about-title">
+            <div class="section-gradient-layer gradient-right"></div>
+            <div class="max-w-7xl mx-auto section-grid">
+                <div>
+                    <span class="section-eyebrow reveal" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21c4.97 0 9-4.03 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 12c0-4.97 4.03-9 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 12c0-2.761 2.239-5 5-5M12 17c2.761 0 5-2.239 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        会社概要
+                    </span>
+                    <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="about-title">
+                        WM TRADE SOLUTION — ZETNA エキストラバージンオリーブオイル
+                    </h2>
+                    <p class="text-sm md:text-lg text-[var(--section-muted)] mb-5 reveal">
+                        WM TRADE SOLUTIONは、高品質なZETNAエキストラバージンオリーブオイルの生産と輸出を専門とするチュニジアの企業です。古代からのオリーブ栽培の伝統に根ざし、チュニジア産オリーブオイルのユニークな風味を世界に紹介することを使命としています。
+                    </p>
+                    <div class="space-y-4 my-6">
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">管理されたプレミアム品質</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">収穫から包装まで、すべての工程を監視しています。</span></div>
+                        </div>
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">本物のチュニジア産テロワール</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">厳選されたオリーブ畑と伝統的な製法から生まれます。</span></div>
+                        </div>
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">国際輸出</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">世界中に配送するための信頼できる物流体制。</span></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-3 mt-8 reveal" role="group">
+                        <a class="section-btn section-btn-primary" href="#contact">お問い合わせ</a>
+                        <a class="section-btn section-btn-ghost" href="#products">製品一覧</a>
+                    </div>
+                </div>
+                <div class="section-media">
+                    <div class="grid place-items-center p-6 md:p-0">
+                        <figure class="w-full max-w-lg m-0 rounded-2xl overflow-hidden reveal shadow-2xl">
+                            <img src="https://i.ibb.co/0R4GyzhG/4e3bbfb1-a4d3-4fd3-84a4-bc0d13f4e260.jpg" alt="オリーブオイルのボトル" loading="lazy" class="w-full h-auto block object-cover"/>
+                            <figcaption class="text-xs md:text-sm text-[var(--section-muted)] p-3 bg-black/40 backdrop-blur-sm border-t border-white/10">ZETNA オリーブオイルのボトル</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================== -->
+        <!-- PRODUCTS SECTION -->
+        <!-- =============================== -->
+        <section id="products" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="products-title">
+            <div class="section-gradient-layer gradient-left"></div>
+            <div class="max-w-7xl mx-auto">
+                <div class="max-w-3xl mx-auto text-center">
+                     <span class="section-eyebrow reveal" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21c4.97 0 9-4.03 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 12c0-4.97 4.03-9 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 12c0-2.761 2.239-5 5-5M12 17c2.761 0 5-2.239 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        私たちのコレクション
+                    </span>
+                    <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="products-title">
+                        製品一覧 – ZETNAオイル
+                    </h2>
+                    <p class="text-sm md:text-lg text-[var(--section-muted)] mb-5 reveal">
+                        ZETNAは単なるオリーブオイルではありません。自然、伝統、そして専門知識の結晶です。私たちのオイルは、理想的な気候条件で栽培された土着の品種から作られています。
+                    </p>
+                </div>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card-new reveal" data-delay="0.1s">
+                        <img src="https://i.ibb.co/0R4GyzhG/4e3bbfb1-a4d3-4fd3-84a4-bc0d13f4e260.jpg" alt="ZETNA クラシック" class="rounded-lg">
+                        <div>
+                            <h3 class="font-heading text-xl md:text-2xl font-bold">ZETNA クラシック</h3>
+                            <p class="mt-2 text-xs md:text-sm">まろやかでフルーティー、日常使いに最適です。</p>
+                        </div>
+                    </div>
+                    <div class="product-card-new reveal" data-delay="0.3s">
+                        <img src="https://i.ibb.co/0R4GyzhG/4e3bbfb1-a4d3-4fd3-84a4-bc0d13f4e260.jpg" alt="ZETNA プレミアム" class="rounded-lg">
+                        <div>
+                            <h3 class="font-heading text-xl md:text-2xl font-bold">ZETNA プレミアム</h3>
+                            <p class="mt-2 text-xs md:text-sm">力強くスパイシー、通のための逸品です。</p>
+                        </div>
+                    </div>
+                    <div class="product-card-new reveal" data-delay="0.5s">
+                        <img src="https://i.ibb.co/0R4GyzhG/4e3bbfb1-a4d3-4fd3-84a4-bc0d13f4e260.jpg" alt="ZETNA オーガニック" class="rounded-lg">
+                        <div>
+                            <h3 class="font-heading text-xl md:text-2xl font-bold">ZETNA オーガニック</h3>
+                            <p class="mt-2 text-xs md:text-sm">化学製品を使用しない有機農法で栽培されています。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================== -->
+        <!-- AWARDS SECTION -->
+        <!-- =============================== -->
+        <section id="recognition" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="recognition-title">
+            <div class="section-gradient-layer gradient-right"></div>
+            <div class="max-w-7xl mx-auto section-grid">
+                <div>
+                    <span class="section-eyebrow reveal">
+                        国際的な評価
+                    </span>
+                    <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="recognition-title">
+                        近年の受賞歴
+                    </h2>
+                    <p class="text-sm md:text-lg text-[var(--section-muted)] mb-8 reveal">
+                        ZETNAオリーブオイルの卓越性は、世界中の最も権威ある審査員によって認められています。各メダルは、品質への私たちの取り組みの証です。
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="text-3xl pt-1">🏅</div>
+                            <div>
+                                <strong class="text-[var(--section-text)] text-sm md:text-base">2024年 金メダル - 国際オリーブオイルコンペティション</strong>
+                                <p class="text-[var(--section-muted)] text-xs md:text-sm">卓越した風味と並外れた品質に対する賞。</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="text-3xl pt-1">🥇</div>
+                            <div>
+                                <strong class="text-[var(--section-text)] text-sm md:text-base">2023年 優秀賞 - 国際農業見本市</strong>
+                                <p class="text-[var(--section-muted)] text-xs md:text-sm">私たちの伝統的な生産方法が評価されました。</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="text-3xl pt-1">🥈</div>
+                            <div>
+                                <strong class="text-[var(--section-text)] text-sm md:text-base">2022年 銀メダル - 地中海オリーブオイルコンペティション</strong>
+                                <p class="text-[var(--section-muted)] text-xs md:text-sm">プレミアムエキストラバージンオリーブオイルの栄誉。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6 flex flex-col justify-center">
+                    <div class="product-card-new reveal text-left p-6" data-delay="0.1s">
+                        <div class="text-3xl mb-3">🏆</div>
+                        <h3 class="font-heading text-lg md:text-xl font-bold">金メダル</h3>
+                        <p class="mt-1 text-xs md:text-sm flex-grow-0">国際オリーブオイルコンペティションで定期的に受賞。</p>
+                    </div>
+                    <div class="product-card-new reveal text-left p-6" data-delay="0.3s">
+                        <div class="text-3xl mb-3">🌍</div>
+                        <h3 class="font-heading text-lg md:text-xl font-bold">グローバル輸出</h3>
+                        <p class="mt-1 text-xs md:text-sm flex-grow-0">5大陸で展開し、チュニジアの品質を世界中にお届けします。</p>
+                    </div>
+                    <div class="product-card-new reveal text-left p-6" data-delay="0.5s">
+                        <div class="text-3xl mb-3">⭐</div>
+                        <h3 class="font-heading text-lg md:text-xl font-bold">プレミアム品質</h3>
+                        <p class="mt-1 text-xs md:text-sm flex-grow-0">厳格な管理によって保証されたエキストラバージン認証。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================== -->
+        <!-- EXPORT & CERTIFICATIONS SECTION -->
+        <!-- =============================== -->
+        <section id="export" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="export-title">
+            <div class="section-gradient-layer gradient-left"></div>
+            <div class="max-w-7xl mx-auto section-grid">
+                <div>
+                    <span class="section-eyebrow reveal">
+                        国際輸出
+                    </span>
+                    <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="export-title">
+                        輸出に特化した専門知識
+                    </h2>
+                    <p class="text-sm md:text-lg text-[var(--section-muted)] mb-5 reveal">
+                        ZETNAはチュニジア産オリーブオイルを世界20カ国以上に輸出しています。各市場の要件に合わせて、パッケージ、認証、物流プロセスを適応させています。
+                    </p>
+                    <div class="space-y-4 my-6">
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">主な市場</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">ヨーロッパ、アジア、北米、中東。</span></div>
+                        </div>
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">利用可能な形式</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">250 ML / 500 ML / 1L / 5L。</span></div>
+                        </div>
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">配送</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">世界中。</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-media">
+                     <div class="flex flex-col justify-center p-6 rounded-2xl bg-[rgba(255,255,255,0.02)] border border-white/10">
+                        <h3 class="font-heading text-lg md:text-2xl leading-tight mb-6 text-center reveal">私たちの認証</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-white/10 reveal" data-delay="0.1s">
+                                <span class="text-xl">✅</span> <span class="text-xs md:text-sm font-semibold text-white/90">Organic</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-white/10 reveal" data-delay="0.2s">
+                                <span class="text-xl">✅</span> <span class="text-xs md:text-sm font-semibold text-white/90">ISO 22000</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-white/10 reveal" data-delay="0.3s">
+                                <span class="text-xl">✅</span> <span class="text-xs md:text-sm font-semibold text-white/90">Health Certificate</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-white/10 reveal" data-delay="0.4s">
+                                <span class="text-xl">✅</span> <span class="text-xs md:text-sm font-semibold text-white/90">Certificate of Origin</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 rounded-lg bg-[rgba(255,255,255,0.03)] border border-white/10 reveal sm:col-span-2 sm:justify-center" data-delay="0.5s">
+                                <span class="text-xl">✅</span> <span class="text-xs md:text-sm font-semibold text-white/90">EU Organic Certificate</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================== -->
+        <!-- CONTACT SECTION (RESTORED) -->
+        <!-- =============================== -->
+        <section id="contact" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="contact-title">
+            <div class="section-gradient-layer gradient-right"></div>
+            <div class="max-w-7xl mx-auto section-grid">
+                <div>
+                    <span class="section-eyebrow reveal" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21c4.97 0 9-4.03 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 12c0-4.97 4.03-9 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 12c0-2.761 2.239-5 5-5M12 17c2.761 0 5-2.239 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        連絡先
+                    </span>
+                    <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="contact-title">
+                        お問い合わせ
+                    </h2>
+                    <p class="text-sm md:text-lg text-[var(--section-muted)] mb-5 reveal">
+                        ご質問や見積もりのご依頼は、お気軽にお問い合わせください。お客様をサポートさせていただきます。
+                    </p>
+                    <div class="space-y-5 my-6">
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="section-check"><svg class="w-4 h-4 text-[#0b1607]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.5v7A2.5 2.5 0 0 0 5.5 18h13A2.5 2.5 0 0 0 21 15.5v-7A2.5 2.5 0 0 0 18.5 6h-13A2.5 2.5 0 0 0 3 8.5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 8l-9 6-9-6"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">メール</strong><br><a href="mailto:contact@wm-tradion.com" class="text-[var(--section-muted)] hover:text-[var(--section-brand)] transition-colors text-xs md:text-sm">contact@wm-tradion.com</a></div>
+                        </div>
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="section-check"><svg class="w-4 h-4 text-[#0b1607]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5.5c0 8.308 6.692 15 15 15"/><path stroke-linecap="round" stroke-linejoin="round" d="M22 12.5c0 .645-.04 1.28-.12 1.9L20 14.5c-1.1-.1-2.2-.4-3.2-.9l-1 1c-1.6-1-2.9-2.3-3.9-3.9l1-1c-.5-1-.8-2.1-.9-3.2L9.6 2.1C10.31 2 11 2 11 2"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">電話</strong><br><a href="tel:+21624628534" class="text-[var(--section-muted)] hover:text-[var(--section-brand)] transition-colors text-xs md:text-sm">+216 24 628 534</a></div>
+                        </div>
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="section-check"><svg class="w-4 h-4 text-[#0b1607]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5c0 7-9 11.5-9 11.5S3 18.5 3 11.5a9 9 0 1 1 18 0z"/></svg></div>
+                            <div>
+                                <strong class="text-[var(--section-text)] text-sm md:text-base">住所</strong>
+                                <address class="not-italic text-[var(--section-muted)] text-xs md:text-sm leading-snug">Bloc A — 3rd Floor, Office A1<br>Henda 10 Building, Rue l'Île de Rhodes<br>1053 Les Berges du Lac 2</address>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-media">
+                    <div class="grid place-items-center p-6 md:p-0">
+                        <figure class="w-full h-full min-h-[400px] m-0 rounded-2xl overflow-hidden reveal shadow-2xl">
+                             <iframe title="地図 — WM Tradion" class="w-full h-full border-0 block" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.427771618177!2d10.279866815610228!3d36.8559815799368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd3565578f7e2b%3A0x6b4f7380963d332d!2sWM%20TRADE%20SOLUTION!5e0!3m2!1sen!2stn!4v1672583805871!5m2!1sen!2stn"></iframe>
+                            <figcaption class="absolute bottom-0 left-0 right-0 text-xs md:text-sm text-[var(--section-muted)] p-3 bg-black/40 backdrop-blur-sm border-t border-white/10 flex items-center justify-between">
+                                <span>WM Tradion — Les Berges du Lac 2, Tunis</span>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=WM+TRADE+SOLUTION" target="_blank" rel="noopener" class="text-xs text-[var(--section-brand-2)] hover:underline">道順 →</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <footer class="mt-16 text-center text-xs text-gray-500">© <span id="year"></span> WM Trade Solution — 全著作権所有</footer>
+        </section>
+    </main>
+
+    <!-- Consolidated JavaScript -->
+    <script>
+        (function() {
+            // --- DYNAMIC YEAR ---
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- SMOOTH SCROLL ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // --- SCROLL REVEAL ANIMATION ---
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const revealElements = document.querySelectorAll('.reveal');
+
+            if (prefersReduced || !('IntersectionObserver' in window)) {
+                revealElements.forEach(el => el.classList.add('in-view'));
+            } else {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const delay = entry.target.dataset.delay || '0s';
+                            entry.target.style.transitionDelay = delay;
+                            entry.target.classList.add('in-view');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                revealElements.forEach(el => observer.observe(el));
+            }
+
+            // --- LANGUAGE SWITCHER LOGIC ---
+            const languageSwitcher = document.getElementById('language-switcher');
+            if (languageSwitcher) {
+                
+                // Determine the current language from the filename
+                const path = window.location.pathname;
+                const page = path.split("/").pop(); // e.g., "index_en.html" or "" for root
+
+                let currentLang = 'fr'; // Default to French
+                if (page.includes('index_en.html')) {
+                    currentLang = 'en';
+                } else if (page.includes('index_ja.html')) {
+                    currentLang = 'ja';
+                } else if (page.includes('index_de.html')) {
+                    currentLang = 'de';
+                }
+                
+                // Set the dropdown to the current language
+                languageSwitcher.value = currentLang;
+
+                // Add event listener to handle changes
+                languageSwitcher.addEventListener('change', function() {
+                    const selectedLang = this.value;
+                    let newUrl = '';
+
+                    if (selectedLang === 'fr') {
+                        // The French version is the main index.html file
+                        newUrl = 'index.html';
+                    } else {
+                        // Other languages follow the pattern index_xx.html
+                        newUrl = `index_${selectedLang}.html`;
+                    }
+
+                    // Redirect to the new page
+                    window.location.href = newUrl;
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
