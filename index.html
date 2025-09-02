@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WM TRADE SOLUTION - Huile d'Olive ZeTna</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Consolidated Styles -->
+    <style>
+        /* --- GENERAL STYLES --- */
+        body {
+            background-color: #0b0b0b;
+            color: #e6eef8;
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+        /* --- HERO SECTION STYLES --- */
+        .gold-border-btn {
+            border: 2px solid transparent;
+            border-image: linear-gradient(45deg, #a2682a, #ffffc2) 1;
+            border-radius: 9999px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gold-border-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 194, 0.3);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        /* --- UNIFIED SECTION STYLES --- */
+        :root {
+            --section-bg: #121212;
+            --section-card: #1f1f1f;
+            --section-text: #ffffff;
+            --section-muted: #a0a0a0;
+            --section-brand: #8bc34a; /* olive green */
+            --section-brand-2: #c3d99a;
+            --section-ring: rgba(139, 195, 74, 0.35);
+            --section-shadow: 0 10px 30px rgba(0,0,0,.35);
+            --section-radius: 18px;
+        }
+        /* Continuous background for the main content area */
+        .main-bg {
+            background: radial-gradient(1200px 600px at 50% -10%, rgba(139,195,74,.05), transparent 60%),
+                        radial-gradient(1000px 800px at 10% 80%, rgba(195,217,154,.08), transparent 80%),
+                        var(--section-bg);
+        }
+        /* Individual gradient layers for each section for visual texture */
+        .section-gradient-layer {
+            position: absolute;
+            inset: 0;
+            opacity: 0.25;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .gradient-right {
+            background: radial-gradient(900px 600px at 90% 10%, rgba(195,217,154,.18), transparent 60%);
+        }
+        .gradient-left {
+            background: radial-gradient(1200px 600px at 10% -10%, rgba(139,195,74,.15), transparent 60%);
+        }
+        /* Grid layout for two-column sections */
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 1fr;
+            gap: clamp(24px, 5vw, 60px);
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            .section-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-media {
+                order: -1;
+            }
+        }
+        /* Reusable components for all sections */
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: var(--section-muted);
+            background: linear-gradient(90deg, rgba(139,195,74,.18), transparent);
+            border: 1px solid rgba(139,195,74,.25);
+            border-radius: 999px;
+            padding: 6px 12px;
+        }
+        .section-check {
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            background: linear-gradient(180deg, var(--section-brand), var(--section-brand-2));
+            display: grid;
+            place-items: center;
+            flex: none;
+            box-shadow: 0 6px 18px var(--section-ring);
+        }
+        .section-btn {
+            appearance: none;
+            border: 0;
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 12px;
+            padding: 12px 18px;
+            line-height: 1;
+            transition: transform .15s ease, box-shadow .15s ease, background .2s ease, color .2s ease;
+            box-shadow: var(--section-shadow);
+            will-change: transform;
+        }
+        .section-btn-primary {
+            background: linear-gradient(180deg, color-mix(in oklab, var(--section-brand), white 10%), var(--section-brand));
+            color: #0b1607;
+        }
+        .section-btn-ghost {
+            background: color-mix(in oklab, var(--section-text), transparent 92%);
+            color: var(--section-text);
+            border: 1px solid color-mix(in oklab, var(--section-text), transparent 80%);
+        }
+        .section-btn:hover {
+            transform: translateY(-1px);
+        }
+        .section-media {
+            position: relative;
+            min-height: 320px;
+        } /* Removed border and bg */
+        /* Styles for the product cards */
+        .product-card-new {
+            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+            border: 1px solid color-mix(in oklab, var(--section-text), transparent 88%);
+            border-radius: var(--section-radius);
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card-new:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,.4);
+            background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+        }
+        .product-card-new img {
+            height: 240px;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.5rem;
+            object-fit: contain;
+        }
+        .product-card-new h3 {
+            color: var(--section-text);
+        }
+        .product-card-new p {
+            color: var(--section-muted);
+            flex-grow: 1;
+        }
+        /* --- UNIVERSAL REVEAL ANIMATION --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .section-btn, .section-btn:hover {
+                transform: none !important;
+            }
+        }
+
+        /* NEW: Seamless hero to main section transition */
+        .hero-overlay-blend {
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), var(--section-bg));
+        }
+    </style>
+</head>
+<body class="bg-black">
+
+    <!-- =============================== -->
+    <!-- HERO SECTION -->
+    <!-- =============================== -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <picture class="absolute inset-0 -z-10">
+            <source media="(max-width: 768px)" srcset="https://i.ibb.co/d0sy6KSk/Gemini-Generated-Image-1hgtts1hgtts1hgt.png">
+            <img src="https://i.ibb.co/5W31spBz/40892f56-3be9-4361-b4aa-777db52ba4d8.png" alt="Olive Oil Background" class="w-full h-full object-cover" loading="lazy">
+        </picture>
+        <!-- Updated: This overlay now fades to the main section's background color -->
+        <div class="absolute inset-0 hero-overlay-blend"></div>
+        <div class="relative z-10 text-center text-white px-4">
+            <div class="fade-in-up" style="animation-delay:0.2s">
+                <img src="https://i.ibb.co/5xTHCRtF/3b54656e-a9e3-4e45-9606-e29b598b5bdf-removebg-preview.png" alt="WM Trade Solution Logo" class="h-20 md:h-24 mx-auto mb-6" style="filter: brightness(1.7);">
+            </div>
+            <h1 class="font-heading text-3xl sm:text-4xl md:text-5xl font-bold mb-4 fade-in-up" style="animation-delay:0.4s; color: #ebdfa2; text-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);">
+                ZeTna : L'Or Vert de la Tunisie
+            </h1>
+            <p class="text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-8 fade-in-up" style="animation-delay:0.6s; color: #ebdfa2; text-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);">
+                Directement de nos oliveraies à votre table, une qualité inégalée pour une saveur unique.
+            </p>
+            <div class="fade-in-up" style="animation-delay:0.8s">
+                <a href="#a-propos" class="gold-border-btn px-6 py-2 font-semibold text-sm" style="color: #ebdfa2; text-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);">Explorer Notre Collection</a>
+            </div>
+        </div>
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white animate-bounce z-10">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </header>
+
+    <main class="main-bg">
+        <!-- =============================== -->
+        <!-- ABOUT US SECTION -->
+        <!-- =============================== -->
+        <section id="a-propos" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="a-propos-title">
+            <div class="section-gradient-layer gradient-right"></div>
+            <div class="max-w-7xl mx-auto section-grid">
+                <div class="p-0"> <!-- No padding needed here as it's handled by text elements -->
+                    <span class="section-eyebrow reveal" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21c4.97 0 9-4.03 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 12c0-4.97 4.03-9 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 12c0-2.761 2.239-5 5-5M12 17c2.761 0 5-2.239 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        À propos de nous
+                    </span>
+                    <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="a-propos-title">
+                        WM TRADE SOLUTION — Huile d’olive ZETNA extra vierge
+                    </h2>
+                    <!-- Adjusted paragraph font size for mobile -->
+                    <p class="text-sm md:text-lg text-[var(--section-muted)] mb-5 reveal">
+                        WM TRADE SOLUTION est une entreprise tunisienne spécialisée dans la production et l’exportation d’huile d’olive ZETNA extra vierge de haute qualité. Ancrée dans une tradition oléicole millénaire, notre mission est de faire découvrir au monde les saveurs uniques de l’huile d’olive tunisienne.
+                    </p>
+                    <div class="space-y-4 my-6">
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">Qualité premium contrôlée</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">De la récolte au conditionnement, chaque étape est suivie.</span></div>
+                        </div>
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">Terroir tunisien authentique</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">Des oliveraies sélectionnées et des méthodes respectueuses.</span></div>
+                        </div>
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">Export international</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">Une logistique fiable pour livrer à travers le monde.</span></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-3 mt-8 reveal" role="group">
+                        <a class="section-btn section-btn-primary" href="#contact">Contactez-nous</a>
+                        <a class="section-btn section-btn-ghost" href="#produits">Nos produits</a>
+                    </div>
+                </div>
+                <div class="section-media">
+                    <div class="grid place-items-center p-6 md:p-0">
+                        <figure class="w-full max-w-lg m-0 rounded-2xl overflow-hidden reveal shadow-2xl">
+                            <img src="https://i.ibb.co/0R4GyzhG/4e3bbfb1-a4d3-4fd3-84a4-bc0d13f4e260.jpg" alt="Bouteille d'huile d'olive" loading="lazy" class="w-full h-auto block object-cover"/>
+                            <figcaption class="text-xs md:text-sm text-[var(--section-muted)] p-3 bg-black/40 backdrop-blur-sm border-t border-white/10">Bouteille d'huile d'olive ZETNA</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================== -->
+        <!-- PRODUCTS SECTION -->
+        <!-- =============================== -->
+        <section id="produits" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="produits-title">
+            <div class="section-gradient-layer gradient-left"></div>
+            <div class="max-w-7xl mx-auto">
+                <div class="max-w-3xl mx-auto text-center">
+                     <span class="section-eyebrow reveal" aria-hidden="true">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 21c4.97 0 9-4.03 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 12c0-4.97 4.03-9 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7 12c0-2.761 2.239-5 5-5M12 17c2.761 0 5-2.239 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        Notre Collection
+                    </span>
+                    <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="produits-title">
+                        Nos produits – L’huile ZETNA
+                    </h2>
+                    <!-- Adjusted paragraph font size for mobile -->
+                    <p class="text-sm md:text-lg text-[var(--section-muted)] mb-5 reveal">
+                        ZETNA est plus qu'une huile d'olive : c’est un concentré de nature, de tradition et de savoir-faire. Notre huile est issue de variétés autochtones cultivées dans des conditions climatiques idéales.
+                    </p>
+                </div>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="product-card-new reveal" data-delay="0.1s">
+                        <img src="https://i.ibb.co/0R4GyzhG/4e3bbfb1-a4d3-4fd3-84a4-bc0d13f4e260.jpg" alt="ZETNA Classique" class="rounded-lg">
+                        <div>
+                            <h3 class="font-heading text-xl md:text-2xl font-bold">ZETNA Classique</h3>
+                            <p class="mt-2 text-xs md:text-sm">Douce, fruitée, idéale pour tous les jours.</p>
+                        </div>
+                    </div>
+                    <div class="product-card-new reveal" data-delay="0.3s">
+                        <img src="https://i.ibb.co/0R4GyzhG/4e3bbfb1-a4d3-4fd3-84a4-bc0d13f4e260.jpg" alt="ZETNA Premium" class="rounded-lg">
+                        <div>
+                            <h3 class="font-heading text-xl md:text-2xl font-bold">ZETNA Premium</h3>
+                            <p class="mt-2 text-xs md:text-sm">Robuste et piquante, pour les connaisseurs.</p>
+                        </div>
+                    </div>
+                    <div class="product-card-new reveal" data-delay="0.5s">
+                        <img src="https://i.ibb.co/0R4GyzhG/4e3bbfb1-a4d3-4fd3-84a4-bc0d13f4e260.jpg" alt="ZETNA Bio" class="rounded-lg">
+                        <div>
+                            <h3 class="font-heading text-xl md:text-2xl font-bold">ZETNA Bio</h3>
+                            <p class="mt-2 text-xs md:text-sm">Issue de l’agriculture biologique, sans produits chimiques.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================== -->
+        <!-- AWARDS SECTION -->
+        <!-- =============================== -->
+        <section id="reconnaissance" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="reconnaissance-title">
+            <div class="section-gradient-layer gradient-right"></div>
+            <div class="max-w-7xl mx-auto section-grid">
+                <!-- Left Column: Detailed Awards -->
+                <div>
+                    <span class="section-eyebrow reveal">
+                        Reconnaissance Internationale
+                    </span>
+                    <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="reconnaissance-title">
+                        Distinctions et Prix Récents
+                    </h2>
+                    <!-- Adjusted paragraph font size for mobile -->
+                    <p class="text-sm md:text-lg text-[var(--section-muted)] mb-8 reveal">
+                        L'excellence de notre huile d'olive ZETNA est reconnue par les jurys les plus prestigieux à travers le monde. Chaque médaille est un témoignage de notre engagement envers la qualité.
+                    </p>
+                    <div class="space-y-6">
+                        <!-- Award 2024 -->
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="text-3xl pt-1">🏅</div>
+                            <div>
+                                <strong class="text-[var(--section-text)] text-sm md:text-base">2024 Médaille d'Or - Concours International d'Huile d'Olive</strong>
+                                <p class="text-[var(--section-muted)] text-xs md:text-sm">Récompense pour l'excellence gustative et la qualité exceptionnelle.</p>
+                            </div>
+                        </div>
+                        <!-- Award 2023 -->
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="text-3xl pt-1">🥇</div>
+                            <div>
+                                <strong class="text-[var(--section-text)] text-sm md:text-base">2023 Prix d'Excellence - Salon International de l'Agriculture</strong>
+                                <p class="text-[var(--section-muted)] text-xs md:text-sm">Reconnaissance de nos méthodes traditionnelles de production.</p>
+                            </div>
+                        </div>
+                        <!-- Award 2022 -->
+                        <div class="flex gap-4 items-start reveal">
+                            <div class="text-3xl pt-1">🥈</div>
+                            <div>
+                                <strong class="text-[var(--section-text)] text-sm md:text-base">2022 Médaille d'Argent - Mediterranean Olive Oil Competition</strong>
+                                <p class="text-[var(--section-muted)] text-xs md:text-sm">Distinction pour notre huile d'olive extra vierge premium.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column: Key Highlights -->
+                <div class="space-y-6 flex flex-col justify-center">
+                    <div class="product-card-new reveal text-left p-6" data-delay="0.1s">
+                        <div class="text-3xl mb-3">🏆</div>
+                        <h3 class="font-heading text-lg md:text-xl font-bold">Médailles d'Or</h3>
+                        <p class="mt-1 text-xs md:text-sm flex-grow-0">Régulièrement primée dans les concours internationaux d'huile d'olive.</p>
+                    </div>
+                    <div class="product-card-new reveal text-left p-6" data-delay="0.3s">
+                        <div class="text-3xl mb-3">🌍</div>
+                        <h3 class="font-heading text-lg md:text-xl font-bold">Export Mondial</h3>
+                        <p class="mt-1 text-xs md:text-sm flex-grow-0">Présents sur 5 continents, nous livrons la qualité tunisienne partout dans le monde.</p>
+                    </div>
+                    <div class="product-card-new reveal text-left p-6" data-delay="0.5s">
+                        <div class="text-3xl mb-3">⭐</div>
+                        <h3 class="font-heading text-lg md:text-xl font-bold">Qualité Premium</h3>
+                        <p class="mt-1 text-xs md:text-sm flex-grow-0">Une certification Extra Vierge garantie par des contrôles rigoureux.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =============================== -->
+        <!-- EXPORT & CERTIFICATIONS SECTION -->
+        <!-- =============================== -->
+        <section id="export" class="relative isolation-isolate py-16 md:py-24 px-5" aria-labelledby="export-title">
+            <div class="section-gradient-layer gradient-left"></div>
+            <div class="max-w-7xl mx-auto section-grid">
+                <!-- Left Column: Export Details -->
+                <div>
+                    <span class="section-eyebrow reveal">
+                        Exportation Internationale
+                    </span>
+                    <h2 class="font-heading text-2xl md:text-4xl leading-tight mt-3 mb-4 letter-spacing-tighter reveal" id="export-title">
+                        Une expertise dédiée à l’export
+                    </h2>
+                    <!-- Adjusted paragraph font size for mobile -->
+                    <p class="text-sm md:text-lg text-[var(--section-muted)] mb-5 reveal">
+                        ZETNA exporte l’huile d’olive tunisienne vers plus de 20 pays à travers le monde. Nous adaptons nos emballages, certifications et processus logistiques aux exigences de chaque marché.
+                    </p>
+                    <div class="space-y-4 my-6">
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">Principaux marchés</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">Europe, Asie, Amérique du Nord, Moyen-Orient.</span></div>
+                        </div>
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">Formats disponibles</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">250 ML / 500 ML / 1L / 5L.</span></div>
+                        </div>
+                        <div class="flex gap-3 items-start reveal">
+                            <div class="section-check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5" stroke="#0b1607" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                            <div><strong class="text-[var(--section-text)] text-sm md:text-base">Livraison</strong><br><span class="text-[var(--section-muted)] text-xs md:text-sm">Mondiale.</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-media">
+                    <div class="grid place-items-center p-6 md:p-0">
+                        <figure class="w-full h-full min-h-[400px] m-0 rounded-2xl overflow-hidden reveal shadow-2xl">
+                             <iframe title="Carte — WM Tradion" class="w-full h-full border-0 block" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.427771618177!2d10.279866815610228!3d36.8559815799368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd3565578f7e2b%3A0x6b4f7380963d332d!2sWM%20TRADE%20SOLUTION!5e0!3m2!1sen!2stn!4v1672583805871!5m2!1sen!2stn"></iframe>
+                            <figcaption class="absolute bottom-0 left-0 right-0 text-xs md:text-sm text-[var(--section-muted)] p-3 bg-black/40 backdrop-blur-sm border-t border-white/10 flex items-center justify-between">
+                                <span>WM Tradion — Les Berges du Lac 2, Tunis</span>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=WM+TRADE+SOLUTION" target="_blank" rel="noopener" class="text-xs text-[var(--section-brand-2)] hover:underline">Itinéraire →</a>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+            <footer class="mt-16 text-center text-xs text-gray-500">© <span id="year"></span> WM Trade Solution — Tous droits réservés</footer>
+        </section>
+    </main>
+
+    <!-- Consolidated JavaScript -->
+    <script>
+        (function() {
+            // --- DYNAMIC YEAR ---
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // --- SMOOTH SCROLL ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // --- SCROLL REVEAL ANIMATION ---
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const revealElements = document.querySelectorAll('.reveal');
+
+            if (prefersReduced || !('IntersectionObserver' in window)) {
+                revealElements.forEach(el => el.classList.add('in-view'));
+                return;
+            }
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = entry.target.dataset.delay || '0s';
+                        entry.target.style.transitionDelay = delay;
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => observer.observe(el));
+        })();
+    </script>
+</body>
+</html>
